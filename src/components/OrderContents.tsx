@@ -1,11 +1,12 @@
 import { formatCurrency } from "../helpers";
-import { OrderItem } from "../types/types";
+import { MenuItem, OrderItem } from "../types/types";
 
 type OrderContentsProps = {
   order: OrderItem[];
+  removeItem:  (id: MenuItem['id']) => void
 };
 
-export default function ({ order }: OrderContentsProps) {
+export default function ({ order, removeItem }: OrderContentsProps) {
   return (
     <div>
       <h2 className="font-black text-4xl">Consumo</h2>
@@ -15,7 +16,10 @@ export default function ({ order }: OrderContentsProps) {
           <p>La orden esta vacía</p>
         ) : (
           order.map((item) => (
-            <div key={item.id} className="flex justify-between items-center border-t border-gray-200 py-5 last-of-type:border-b">
+            <div
+              key={item.id}
+              className="flex justify-between items-center border-t border-gray-200 py-5 last-of-type:border-b"
+            >
               <div>
                 <p className="text-lg">
                   {item.name} - {formatCurrency(item.price)}
@@ -27,7 +31,10 @@ export default function ({ order }: OrderContentsProps) {
                 </p>
               </div>
 
-              <button className="bg-red-600 h-8 w-8 rounded-full text-white font-black">
+              <button 
+              className="bg-red-600 h-8 w-8 rounded-full text-white font-black"
+              onClick={() => removeItem(item.id)}
+              >
                 X
               </button>
             </div>
