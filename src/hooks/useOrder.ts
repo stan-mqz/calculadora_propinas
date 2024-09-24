@@ -3,6 +3,7 @@ import type { MenuItem, OrderItem } from "../types/types";
 
 export default function useOrder() {
   const [order, setOrder] = useState<OrderItem[]>([]);
+  const [tip, setTip] = useState(0)
 
   //Creas la función, especificas que tipo de dato recibirá el parámetro
   const addItem = (item: MenuItem) => {
@@ -40,6 +41,8 @@ export default function useOrder() {
 
   return {
     order,
+    tip,
+    setTip,
     addItem,
     removeItem
   };
