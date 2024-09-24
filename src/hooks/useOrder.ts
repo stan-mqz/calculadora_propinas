@@ -39,11 +39,17 @@ export default function useOrder() {
     setOrder(updatedOrder)
   }
 
+  function placeOrder() {
+    setOrder([])
+    setTip(0)
+  }
+
   return {
     order,
     tip,
     setTip,
     addItem,
-    removeItem
+    removeItem,
+    placeOrder
   };
 }
